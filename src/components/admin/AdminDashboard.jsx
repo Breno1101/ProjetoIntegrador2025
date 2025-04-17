@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import useProgress from '../../../hooks/useProgress';
+import useProgress from '../../hooks/useProgress';
 
 // Admin components
 import StudentList from '../../components/admin/StudentList';

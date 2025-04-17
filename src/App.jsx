@@ -9,10 +9,10 @@ import AdminLayout from './layouts/AdminLayout';
 // Pages
 import Login from './components/pages/auth/Login.jsx';
 import Register from './components/pages/auth/Register.jsx';
-import Dashboard from './components/pages/dashboard/Dashboard.jsx';
-import ChatPage from './components/pages/chat/ChatPage.jsx';
+import Dashboard from './components/dashboard/Dashboard.jsx';
+import ChatPage from './components/chat/ChatPage.jsx';
 import Profile from './components/pages/profile/Profile.jsx';
-import AdminDashboard from './components/pages/admin/AdminDashboard.jsx';
+import AdminDashboard from './components/admin/AdminDashboard.jsx';
 
 // Context Providers
 import { AuthProvider } from './context/AuthContext.jsx';

@@ -30,7 +30,10 @@ export const AuthProvider = ({ children }) => {
       // Mock response - in real app, this would come from backend
       const userData = {
         id: 'usr_' + Math.random().toString(36).substr(2, 9),
-        name: email.split('@')[0],
+        name: email.split('@')[0]
+          .split('.')
+          .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+          .join(' '), // Capitalize name parts
         email,
         role: email.includes('admin') ? 'admin' : 'student',
         avatar: `https://ui-avatars.com/api/?name=${email.split('@')[0]}&background=random`,

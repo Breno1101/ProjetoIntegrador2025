@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import useChat from '../../../hooks/useChat';
-import useProgress from '../../../hooks/useProgress';
+import useChat from '../../hooks/useChat';
+import useProgress from '../../hooks/useProgress';
 
 // Chat components
 import ChatInterface from '../../components/chat/ChatInterface';

@@ -27,11 +27,11 @@
   }
   
   .btn-primary {
-    @apply bg-quantum-DEFAULT text-white hover:bg-quantum-dark focus:ring-quantum-light;
+    @apply bg-quantum text-white hover:bg-quantum-dark focus:ring-quantum-light;
   }
   
   .btn-secondary {
-    @apply bg-secondary-DEFAULT text-white hover:bg-secondary-dark focus:ring-secondary-light;
+    @apply bg-secondary text-white hover:bg-secondary-dark focus:ring-secondary-light;
   }
   
   .card {
@@ -93,7 +93,7 @@
 }
 
 .quantum-loading div {
-  @apply w-2 h-2 bg-quantum-DEFAULT rounded-full;
+  @apply w-2 h-2 bg-quantum rounded-full;
   animation: quantum-bounce 1.4s infinite ease-in-out both;
 }
 

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import useAuth from '../../../hooks/useAuth';
-import useChat from '../../../hooks/useChat';
-import useProgress from '../../../hooks/useProgress';
+import useAuth from '../../hooks/useAuth';
+import useChat from '../../hooks/useChat';
+import useProgress from '../../hooks/useProgress';
 
 // Dashboard components
 import LessonCard from '../../components/dashboard/LessonCard';
-import ProgressChart from './ProgressChart.tsx';
-import StatsSummary from './StatsSummary.jsx/index.ts';
+import ProgressChart from '../dashboard/ProgressChart';
+import StatsSummary from '../dashboard/StatsSummary';
 
 const Dashboard = () => {
   const { currentUser } = useAuth();
