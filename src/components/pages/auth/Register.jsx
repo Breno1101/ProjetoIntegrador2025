@@ -144,7 +144,6 @@ const Register = () => {
         
         <div className="mt-4 text-center text-xs text-gray-500">
           <span className="block">⚛️ Quantum Tutor - 2025</span>
-          <span>Sua jornada pela física quântica começa aqui</span>
         </div>
       </div>
     </div>
