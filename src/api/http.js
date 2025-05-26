@@ -1,16 +1,16 @@
 import axios from 'axios';
 
 // Configuração base do Axios
-const api = axios.create({
-  baseURL: 'https://api.quantumtutor.example/v1', // Exemplo de URL base (substitua pela URL real no futuro)
-  timeout: 10000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+const http = axios.create({
+  baseURL: process.env.PUBLIC_API_AUTH_URL,
+  // timeout: 10000,
+  // headers: {
+  //   'Content-Type': 'application/json',
+  // },
 });
 
 // Interceptor para adicionar token de autenticação
-api.interceptors.request.use(
+http.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('quantumToken');
     if (token) {
@@ -22,7 +22,7 @@ api.interceptors.request.use(
 );
 
 // Interceptor para lidar com erros
-api.interceptors.response.use(
+http.interceptors.response.use(
   (response) => response,
   (error) => {
     // Lidar com erros de autenticação (401)
@@ -35,4 +35,4 @@ api.interceptors.response.use(
   }
 );
 
-export default api;
+export default http;

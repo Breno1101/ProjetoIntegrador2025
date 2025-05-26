@@ -1,4 +1,4 @@
-import api from './api';
+import http from './http';
 
 // Dados das aulas (em um ambiente real, viriam da API)
 const LESSONS = [

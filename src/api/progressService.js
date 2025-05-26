@@ -1,4 +1,4 @@
-import api from './api';
+import http from './http';
 
 // Serviço para gerenciar o progresso dos estudantes
 const progressService = {
