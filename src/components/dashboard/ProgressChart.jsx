@@ -28,7 +28,7 @@ const ProgressChart = () => {
       <div className="flex items-end space-x-2">
         {chartData.map((item) => (
           <div key={item.id} className="flex flex-col items-center flex-1">
-            <div className="text-xs text-gray-600 mb-1">{item.progress}%</div>
+            <div className="text-xs text-gray-600 dark:text-gray-300 mb-1">{item.progress}%</div>
             <div 
               className="w-full bg-gray-100 rounded-t-sm" 
               style={{ height: `${Math.max(4, item.progress)}px` }}
@@ -39,13 +39,13 @@ const ProgressChart = () => {
               ></div>
             </div>
             <div className="w-full text-center mt-2">
-              <span className="text-xl">{item.id}</span>
+              <span className="text-xl dark:text-white">{item.id}</span>
             </div>
           </div>
         ))}
       </div>
       
-      <div className="text-xs text-gray-500 text-center mt-4">
+      <div className="text-xs text-gray-500 dark:text-gray-300 text-center mt-4">
         <div className="flex justify-between">
           <span>Aula 1</span>
           <span>Aula 10</span>

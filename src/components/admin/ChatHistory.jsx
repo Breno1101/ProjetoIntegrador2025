@@ -83,15 +83,15 @@ const ChatHistory = ({ studentId }) => {
   
   return (
     <div>
-      <h3 className="text-lg font-medium text-gray-900 mb-4">Histórico de Conversas</h3>
+      <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Histórico de Conversas</h3>
       
       <div className="mb-4">
-        <label htmlFor="lesson-select" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="lesson-select" className="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-1">
           Selecione uma aula
         </label>
         <select
           id="lesson-select"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-quantum-light focus:border-quantum-light"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none dark:bg-dark-lighter dark:text-white focus:ring-quantum-light focus:border-quantum-light"
           value={selectedLesson?.id || ''}
           onChange={(e) => {
             const lessonId = parseInt(e.target.value);
@@ -109,17 +109,17 @@ const ChatHistory = ({ studentId }) => {
       </div>
       
       {selectedLesson ? (
-        <div className="bg-gray-50 rounded-lg border border-gray-200">
-          <div className="p-3 border-b border-gray-200 bg-white rounded-t-lg">
+        <div className="bg-gray-50 rounded-lg border border-gray-200 dark:bg-dark dark:border-gray-700">
+          <div className="p-3 border-b border-gray-200 bg-white dark:bg-dark dark:border-gray-500 rounded-t-lg">
             <div className="flex items-center">
               <div className={`w-8 h-8 ${selectedLesson.color} rounded-full flex items-center justify-center text-lg mr-3`}>
                 {selectedLesson.icon}
               </div>
-              <h4 className="font-medium">{selectedLesson.title}</h4>
+              <h4 className="font-medium dark:text-white">{selectedLesson.title}</h4>
             </div>
           </div>
           
-          <div className="p-4 max-h-96 overflow-y-auto">
+          <div className="p-4 max-h-96 overflow-y-auto ">
             {chatHistory.length > 0 ? (
               <div className="space-y-4">
                 {chatHistory.map((message) => (
@@ -131,13 +131,13 @@ const ChatHistory = ({ studentId }) => {
                       className={`max-w-[80%] rounded-lg px-4 py-2 ${
                         message.sender === 'user' 
                           ? 'bg-quantum-light text-white' 
-                          : 'bg-white border border-gray-200'
+                          : 'bg-white border border-gray-200 dark:bg-dark-lighter dark:border-gray-800'
                       }`}
                     >
-                      <div className="text-xs text-gray-500 mb-1">
+                      <div className={`text-xs mb-1 ${message.sender === 'user' ? "text-white" : "text-gray-500"}`}>
                         {message.sender === 'user' ? 'Estudante' : 'Quantum Tutor'} • {formatTime(message.timestamp)}
                       </div>
-                      <div className={message.sender === 'user' ? 'text-white' : 'text-gray-800'}>
+                      <div className={message.sender === 'user' ? 'text-white' : 'text-gray-800 dark:text-white'}>
                         {message.text}
                       </div>
                     </div>
@@ -152,8 +152,8 @@ const ChatHistory = ({ studentId }) => {
           </div>
         </div>
       ) : (
-        <div className="text-center py-8 bg-gray-50 rounded-lg border border-gray-200">
-          <p className="text-gray-500">Selecione uma aula para ver o histórico de conversas</p>
+        <div className="text-center py-8 bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-600 dark:border-gray-700">
+          <p className="text-gray-500 dark:text-gray-300">Selecione uma aula para ver o histórico de conversas</p>
         </div>
       )}
     </div>

@@ -23,28 +23,28 @@ const ProgressOverview = ({ studentId }) => {
   
   return (
     <div>
-      <h3 className="text-lg font-medium text-gray-900 mb-4">Progresso nas Aulas</h3>
+      <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Progresso nas Aulas</h3>
       
       <div className="space-y-4">
         {lessons.map(lesson => {
           const progress = getMockLessonProgress(lesson.id);
           
           return (
-            <div key={lesson.id} className="bg-gray-50 rounded-lg p-4">
+            <div key={lesson.id} className="bg-gray-50 dark:bg-gray-600 rounded-lg p-4">
               <div className="flex justify-between items-center mb-2">
                 <div className="flex items-center">
                   <div className={`w-8 h-8 ${lesson.color} rounded-full flex items-center justify-center text-lg mr-3`}>
                     {lesson.icon}
                   </div>
-                  <h4 className="font-medium">{lesson.title}</h4>
+                  <h4 className="font-medium dark:text-white">{lesson.title}</h4>
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-gray-600 dark:text-gray-300">
                   {progress.completed ? (
-                    <span className="text-green-600 font-medium">Concluído</span>
+                    <span className="text-green-600 dark:text-green-400 font-medium">Concluído</span>
                   ) : progress.started ? (
-                    <span className="text-blue-600 font-medium">Em progresso</span>
+                    <span className="text-blue-600 dark:text-blue-400 font-medium">Em progresso</span>
                   ) : (
-                    <span className="text-gray-500">Não iniciado</span>
+                    <span className="text-gray-500 dark:text-gray-300">Não iniciado</span>
                   )}
                 </div>
               </div>
@@ -52,19 +52,16 @@ const ProgressOverview = ({ studentId }) => {
               <div className="flex items-center mb-2">
                 <div className="w-full h-2 bg-gray-200 rounded-full mr-2">
                   <div
-                    className={`h-2 rounded-full ${progress.completed ? 'bg-green-500' : 'bg-quantum-DEFAULT'}`}
+                    className={`h-2 rounded-full ${progress.completed ? 'bg-green-500 dark:bg-green-400' : 'bg-quantum dark:bg-quantum-light'}`}
                     style={{ width: `${progress.progress}%` }}
                   ></div>
                 </div>
-                <span className="text-sm font-medium w-12 text-right">{progress.progress}%</span>
+                <span className="text-sm font-medium w-12 text-right dark:text-white">{progress.progress}%</span>
               </div>
               
-              <div className="flex flex-wrap text-xs text-gray-600 mt-2">
+              <div className="flex flex-wrap text-xs text-gray-600 dark:text-gray-300 mt-2">
                 <div className="w-1/2 mb-1">
                   <span className="font-medium">Interações:</span> {progress.interactions}
-                </div>
-                <div className="w-1/2 mb-1">
-                  <span className="font-medium">Última atividade:</span> {new Date(progress.lastActive).toLocaleDateString('pt-BR')}
                 </div>
               </div>
             </div>

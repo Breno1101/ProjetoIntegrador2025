@@ -21,7 +21,7 @@ const StudentList = ({ students, selectedStudentId, onSelectStudent, loading }) 
           <input
             type="text"
             placeholder="Buscar estudantes..."
-            className="w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-quantum-light focus:border-quantum-light text-sm"
+            className="w-full pl-3 pr-10 py-2 border border-gray-300 dark:bg-dark-lighter dark:text-white rounded-md focus:outline-none focus:ring-1 focus:ring-quantum-light focus:border-quantum-light text-sm"
             value={searchTerm}
             onChange={handleSearchChange}
           />
@@ -54,7 +54,7 @@ const StudentList = ({ students, selectedStudentId, onSelectStudent, loading }) 
                 className={`w-full flex items-center p-3 rounded-md text-left transition-colors ${
                   selectedStudentId === student.id
                     ? 'bg-quantum-light text-white'
-                    : 'hover:bg-gray-100 text-gray-700'
+                    : 'hover:bg-gray-100 text-gray-700 dark:hover:bg-gray-600 dark:text-white'
                 }`}
                 onClick={() => onSelectStudent(student)}
               >
@@ -65,13 +65,16 @@ const StudentList = ({ students, selectedStudentId, onSelectStudent, loading }) 
                 />
                 <div className="ml-3">
                   <p className="text-sm font-medium">{student.name}</p>
-                  <p className="text-xs text-gray-500">Progresso: {student.progress.overall}%</p>
+                  <p className= {`text-xs ${selectedStudentId === student.id
+                    ? 'text-white'
+                    : 'text-gray-500 dark:text-gray-400'
+                }`}>Progresso: {student.progress.overall}%</p>
                 </div>
               </button>
             ))}
           </div>
         ) : (
-          <div className="text-center py-6 text-gray-500">
+          <div className="text-center py-6 text-gray-500 dark:text-gray-400">
             Nenhum estudante encontrado
           </div>
         )}

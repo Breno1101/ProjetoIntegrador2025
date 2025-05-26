@@ -14,17 +14,17 @@ const ChatMessage = ({ message, isUser }) => {
   
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`}>
-      <div className={`max-w-[80%] ${isUser ? 'bg-quantum-DEFAULT text-white' : 'bg-white border border-gray-200'} rounded-lg px-4 py-3 shadow-sm`}>
+      <div className={`max-w-[80%] ${isUser ? 'bg-quantum text-white' : 'bg-white dark:bg-dark-lighter border border-gray-200 dark:border-dark dark:text-white'} rounded-lg px-4 py-3 shadow-sm`}>
         <div className={`flex items-center mb-2 ${isUser ? 'justify-end' : 'justify-start'}`}>
           <div className={`flex items-center ${isUser ? 'order-2' : 'order-1'}`}>
             {!isUser && (
               <span className="text-xl mr-2">⚛️</span>
             )}
-            <span className={`font-medium text-sm ${isUser ? 'text-white' : 'text-gray-900'}`}>
+            <span className={`font-medium text-sm ${isUser ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
               {isUser ? 'Você' : 'Quantum Tutor'}
             </span>
           </div>
-          <span className={`text-xs ${isUser ? 'text-white/70 mr-2' : 'text-gray-500 ml-2'}`}>
+          <span className={`text-xs ${isUser ? 'text-white/70 mr-2' : 'text-gray-500 dark:text-gray-300 ml-2'}`}>
             {formatTime(message.timestamp)}
           </span>
         </div>

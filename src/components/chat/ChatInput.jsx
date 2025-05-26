@@ -16,7 +16,7 @@ const ChatInput = ({ onSendMessage, disabled, placeholder }) => {
     <form onSubmit={handleSubmit} className="flex items-end space-x-2">
       <div className="flex-grow relative">
         <textarea
-          className="w-full bg-gray-50 border border-gray-300 rounded-lg py-2 px-4 pr-12 resize-none focus:outline-none focus:ring-2 focus:ring-quantum-light focus:border-transparent"
+          className="w-full bg-gray-50 dark:bg-dark-lighter border dark:text-white border-gray-300 rounded-lg py-2 px-4 pr-12 resize-none focus:outline-none focus:ring-2 focus:ring-quantum-light focus:border-transparent"
           placeholder={placeholder || "Digite sua mensagem..."}
           rows={1}
           value={message}
@@ -30,7 +30,7 @@ const ChatInput = ({ onSendMessage, disabled, placeholder }) => {
           }}
           style={{ minHeight: '2.5rem', maxHeight: '6rem' }}
         />
-        <div className="absolute bottom-2 right-2 text-gray-400 text-xs">
+        <div className="absolute bottom-2 right-2 text-gray-400  text-xs">
           {message.length > 0 && (
             <span>Enter ⏎</span>
           )}

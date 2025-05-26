@@ -4,7 +4,6 @@ import useChat from '../../hooks/useChat';
 import useProgress from '../../hooks/useProgress';
 
 // Chat components
-import ChatInterface from '../../components/chat/ChatInterface';
 import ChatMessage from '../../components/chat/ChatMessage';
 import ChatInput from '../../components/chat/ChatInput';
 import LessonSelector from '../../components/chat/LessonSelector';
@@ -76,7 +75,7 @@ const ChatPage = () => {
     <div className="h-[calc(100vh-80px)] flex flex-col">
       <div className="flex flex-col md:flex-row h-full">
         {/* Lesson selector sidebar */}
-        <div className="w-full md:w-64 bg-white border-r border-gray-200 overflow-y-auto">
+        <div className="w-full md:w-64 bg-white dark:bg-dark border-gray-200 overflow-y-auto">
           <LessonSelector
             lessons={lessons}
             selectedLessonId={selectedLessonId}
@@ -88,20 +87,20 @@ const ChatPage = () => {
         <div className="flex-1 flex flex-col">
           {/* Lesson header */}
           {activeLesson && (
-            <div className="bg-white border-b border-gray-200 p-4">
+            <div className="bg-white dark:bg-dark border-b border-gray-200 p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <div className={`flex-shrink-0 w-10 h-10 ${activeLesson.color} rounded-full flex items-center justify-center text-2xl`}>
                     {activeLesson.icon}
                   </div>
                   <div className="ml-3">
-                    <h2 className="text-lg font-medium text-gray-900">{activeLesson.title}</h2>
-                    <p className="text-sm text-gray-500">{activeLesson.description}</p>
+                    <h2 className="text-lg font-medium text-gray-900 dark:text-white">{activeLesson.title}</h2>
+                    <p className="text-sm text-gray-500 dark:text-gray-300">{activeLesson.description}</p>
                   </div>
                 </div>
                 {currentLessonProgress && (
                   <div className="flex items-center">
-                    <div className="text-sm text-gray-600 mr-2">
+                    <div className="text-sm text-gray-600 dark:text-gray-300 mr-2">
                       {currentLessonProgress.progressPercentage}%
                     </div>
                     <div className="w-20 h-2 bg-gray-200 rounded-full">
@@ -119,18 +118,18 @@ const ChatPage = () => {
           {/* Chat messages */}
           <div 
             ref={chatContainerRef}
-            className="flex-1 p-4 overflow-y-auto bg-gray-50"
+            className="flex-1 p-4 overflow-y-auto bg-gray-50 dark:bg-dark"
           >
-            <ChatInterface>
+            <div className="flex flex-col space-y-4">
               {conversation.length === 0 ? (
                 <div className="text-center py-8">
                   <div className="text-4xl mb-4">👋</div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">Bem-vindo à aula!</h3>
-                  <p className="text-gray-600 mb-4">
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">Bem-vindo à aula!</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
                     {activeLesson ? activeLesson.description : "Selecione uma aula para começar"}
                   </p>
                   {activeLesson && (
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-gray-300">
                       Faça perguntas sobre o conteúdo da aula e interaja com o tutor quântico para aprender mais.
                     </p>
                   )}
@@ -154,11 +153,11 @@ const ChatPage = () => {
                   </div>
                 </div>
               )}
-            </ChatInterface>
+            </div>
           </div>
           
           {/* Message input */}
-          <div className="border-t border-gray-200 p-4 bg-white">
+          <div className="border-t border-gray-200 p-4 bg-white dark:bg-dark">
             <ChatInput
               onSendMessage={handleSendMessage}
               disabled={!activeLesson || loading}

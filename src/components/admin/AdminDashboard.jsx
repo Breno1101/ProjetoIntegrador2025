@@ -59,58 +59,58 @@ const AdminDashboard = () => {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Painel Administrativo</h1>
-        <p className="text-gray-600">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Painel Administrativo</h1>
+        <p className="text-gray-600 dark:text-gray-300">
           Gerencie estudantes e acompanhe o progresso no curso de Computação Quântica.
         </p>
       </div>
       
       {/* Stats overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white dark:bg-dark-lighter rounded-lg shadow p-6">
           <div className="flex items-center">
             <div className="p-3 rounded-full bg-blue-100 text-blue-600">
               <span className="text-2xl">👥</span>
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-500">Total de Estudantes</p>
-              <p className="text-2xl font-semibold text-gray-900">{stats.totalStudents || 0}</p>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-300">Total de Estudantes</p>
+              <p className="text-2xl font-semibold text-gray-900 dark:text-white">{stats.totalStudents || 0}</p>
             </div>
           </div>
         </div>
         
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white dark:bg-dark-lighter rounded-lg shadow p-6">
           <div className="flex items-center">
             <div className="p-3 rounded-full bg-green-100 text-green-600">
               <span className="text-2xl">📊</span>
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-500">Progresso Médio</p>
-              <p className="text-2xl font-semibold text-gray-900">{stats.averageProgress || 0}%</p>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-300">Progresso Médio</p>
+              <p className="text-2xl font-semibold text-gray-900 dark:text-white">{stats.averageProgress || 0}%</p>
             </div>
           </div>
         </div>
+
+        {/*<div className="bg-white dark:bg-dark-lighter rounded-lg shadow p-6">*/}
+        {/*  <div className="flex items-center">*/}
+        {/*    <div className="p-3 rounded-full bg-purple-100 text-purple-600">*/}
+        {/*      <span className="text-2xl">🔄</span>*/}
+        {/*    </div>*/}
+        {/*    <div className="ml-4">*/}
+        {/*      <p className="text-sm font-medium text-gray-500 dark:text-gray-300">Ativos (7 dias)</p>*/}
+        {/*      <p className="text-2xl font-semibold text-gray-900 dark:text-white">{stats.activeLastWeek || 0}</p>*/}
+        {/*    </div>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
         
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center">
-            <div className="p-3 rounded-full bg-purple-100 text-purple-600">
-              <span className="text-2xl">🔄</span>
-            </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium text-gray-500">Ativos (7 dias)</p>
-              <p className="text-2xl font-semibold text-gray-900">{stats.activeLastWeek || 0}</p>
-            </div>
-          </div>
-        </div>
-        
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white dark:bg-dark-lighter rounded-lg shadow p-6">
           <div className="flex items-center">
             <div className="p-3 rounded-full bg-yellow-100 text-yellow-600">
               <span className="text-2xl">🏆</span>
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-500">Taxa de Conclusão</p>
-              <p className="text-2xl font-semibold text-gray-900">{stats.completionRate || 0}%</p>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-300">Taxa de Conclusão</p>
+              <p className="text-2xl font-semibold text-gray-900 dark:text-white">{stats.completionRate || 0}%</p>
             </div>
           </div>
         </div>
@@ -119,9 +119,9 @@ const AdminDashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Students list */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg shadow">
-            <div className="p-4 border-b border-gray-200">
-              <h2 className="text-lg font-medium text-gray-900">Estudantes</h2>
+          <div className="bg-white dark:bg-dark-lighter rounded-lg shadow">
+            <div className="pl-4 pt-4 border-b border-gray-200">
+              <h2 className="text-lg font-medium text-gray-900 dark:text-white">Estudantes</h2>
             </div>
             <div className="p-2">
               <StudentList 
@@ -137,34 +137,34 @@ const AdminDashboard = () => {
         {/* Main content area */}
         <div className="lg:col-span-2">
           {selectedStudent ? (
-            <div className="bg-white rounded-lg shadow">
-              <div className="border-b border-gray-200">
+            <div className="bg-white dark:bg-dark-lighter rounded-lg shadow">
+              <div className="border-b border-gray-200 dark:border-gray-600">
                 <nav className="flex">
                   <button
-                    className={`px-4 py-4 text-sm font-medium ${
+                    className={`px-4 py-4 border-b-2 text-sm font-medium ${
                       activeSection === 'student'
-                        ? 'text-quantum-DEFAULT border-b-2 border-quantum-DEFAULT'
-                        : 'text-gray-500 hover:text-gray-700'
+                        ? 'border-quantum text-quantum dark:border-quantum-light dark:text-quantum-light'
+                        : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 hover:border-gray-300 dark:hover:text-gray-300 dark:hover:border-gray-300'
                     }`}
                     onClick={() => setActiveSection('student')}
                   >
                     Perfil do Estudante
                   </button>
                   <button
-                    className={`px-4 py-4 text-sm font-medium ${
+                    className={`px-4 py-4 border-b-2 text-sm font-medium ${
                       activeSection === 'progress'
-                        ? 'text-quantum-DEFAULT border-b-2 border-quantum-DEFAULT'
-                        : 'text-gray-500 hover:text-gray-700'
+                        ? 'border-quantum text-quantum dark:border-quantum-light dark:text-quantum-light'
+                        : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 hover:border-gray-300 dark:hover:text-gray-300 dark:hover:border-gray-300'
                     }`}
                     onClick={() => setActiveSection('progress')}
                   >
                     Detalhes de Progresso
                   </button>
                   <button
-                    className={`px-4 py-4 text-sm font-medium ${
+                    className={`px-4 py-4 border-b-2 text-sm font-medium ${
                       activeSection === 'chat'
-                        ? 'text-quantum-DEFAULT border-b-2 border-quantum-DEFAULT'
-                        : 'text-gray-500 hover:text-gray-700'
+                        ? 'border-quantum text-quantum dark:border-quantum-light dark:text-quantum-light'
+                        : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 hover:border-gray-300 dark:hover:text-gray-300 dark:hover:border-gray-300'
                     }`}
                     onClick={() => setActiveSection('chat')}
                   >
@@ -183,46 +183,33 @@ const AdminDashboard = () => {
                         className="h-16 w-16 rounded-full"
                       />
                       <div className="ml-4">
-                        <h2 className="text-xl font-semibold text-gray-900">{selectedStudent.name}</h2>
-                        <p className="text-gray-600">{selectedStudent.email}</p>
+                        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{selectedStudent.name}</h2>
+                        <p className="text-gray-600 dark:text-gray-400">{selectedStudent.email}</p>
                       </div>
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <h3 className="text-sm font-medium text-gray-500 mb-2">Progresso Geral</h3>
+                      <div className="bg-gray-50 dark:bg-gray-600 p-4 rounded-lg">
+                        <h3 className="text-sm font-medium text-gray-500 dark:text-gray-300 mb-2">Progresso Geral</h3>
                         <div className="flex items-center">
                           <div className="w-full h-4 bg-gray-200 rounded-full mr-2">
                             <div
-                              className="h-4 bg-quantum-DEFAULT rounded-full"
+                              className="h-4 bg-quantum rounded-full"
                               style={{ width: `${selectedStudent.progress.overall}%` }}
                             ></div>
                           </div>
-                          <span className="text-sm font-medium">{selectedStudent.progress.overall}%</span>
+                          <span className="text-sm font-medium dark:text-white">{selectedStudent.progress.overall}%</span>
                         </div>
                       </div>
                       
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <h3 className="text-sm font-medium text-gray-500 mb-2">Aulas Completadas</h3>
-                        <p className="text-2xl font-semibold">{selectedStudent.progress.completedLessons} / 10</p>
+                      <div className="bg-gray-50 dark:bg-gray-600 p-4 rounded-lg">
+                        <h3 className="text-sm font-medium text-gray-500 dark:text-gray-300 mb-2">Aulas Completadas</h3>
+                        <p className="text-2xl font-semibold dark:text-white">{selectedStudent.progress.completedLessons} / 10</p>
                       </div>
                       
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <h3 className="text-sm font-medium text-gray-500 mb-2">Última Atividade</h3>
-                        <p className="text-sm">
-                          {new Date(selectedStudent.progress.lastActive).toLocaleDateString('pt-BR', {
-                            day: '2-digit',
-                            month: '2-digit',
-                            year: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit'
-                          })}
-                        </p>
-                      </div>
-                      
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <h3 className="text-sm font-medium text-gray-500 mb-2">Status</h3>
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      <div className="bg-gray-50 dark:bg-gray-600 p-4 rounded-lg">
+                        <h3 className="text-sm font-medium text-gray-500 mb-2 dark:text-gray-300 ">Status</h3>
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-300">
                           Ativo
                         </span>
                       </div>
@@ -240,8 +227,8 @@ const AdminDashboard = () => {
               </div>
             </div>
           ) : (
-            <div className="bg-white rounded-lg shadow p-6 text-center">
-              <p className="text-gray-500">Selecione um estudante para ver detalhes</p>
+            <div className="bg-white dark:bg-dark-lighter rounded-lg shadow p-6 text-center">
+              <p className="text-gray-500 dark:text-gray-300">Selecione um estudante para ver detalhes</p>
             </div>
           )}
         </div>

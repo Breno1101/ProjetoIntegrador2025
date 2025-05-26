@@ -24,7 +24,7 @@ const StatsSummary = ({ completedLessons, inProgressLessons, totalLessons }) => 
     <div className="space-y-4">
       <div>
         <div className="flex justify-between items-center mb-2">
-          <span className="text-sm text-gray-600">Concluídas</span>
+          <span className="text-sm text-gray-600 dark:text-gray-300">Concluídas</span>
           <span className="text-sm font-semibold">{completedLessons} de {totalLessons}</span>
         </div>
         <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
@@ -37,7 +37,7 @@ const StatsSummary = ({ completedLessons, inProgressLessons, totalLessons }) => 
       
       <div>
         <div className="flex justify-between items-center mb-2">
-          <span className="text-sm text-gray-600">Em progresso</span>
+          <span className="text-sm text-gray-600 dark:text-gray-300">Em progresso</span>
           <span className="text-sm font-semibold">{inProgressLessons} de {totalLessons}</span>
         </div>
         <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
@@ -50,12 +50,12 @@ const StatsSummary = ({ completedLessons, inProgressLessons, totalLessons }) => 
       
       <div>
         <div className="flex justify-between items-center mb-2">
-          <span className="text-sm text-gray-600">Não iniciadas</span>
+          <span className="text-sm text-gray-600 dark:text-gray-300">Não iniciadas</span>
           <span className="text-sm font-semibold">{remainingLessons} de {totalLessons}</span>
         </div>
         <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
-            className="h-2 bg-gray-500 rounded-full"
+            className="h-2 bg-gray-600 dark:bg-dark-darker rounded-full"
             style={{ width: `${(remainingLessons / totalLessons) * 100}%` }}
           ></div>
         </div>
@@ -67,8 +67,8 @@ const StatsSummary = ({ completedLessons, inProgressLessons, totalLessons }) => 
             <span className="text-white text-lg">⏱️</span>
           </div>
           <div>
-            <p className="text-sm text-gray-600">Tempo estimado para conclusão</p>
-            <p className="font-medium">{estimateTimeToCompletion()}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">Tempo estimado para conclusão</p>
+            <p className="font-medium dark:text-white">{estimateTimeToCompletion()}</p>
           </div>
         </div>
       </div>

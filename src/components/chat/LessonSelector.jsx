@@ -6,7 +6,7 @@ const LessonSelector = ({ lessons, selectedLessonId, onLessonSelect }) => {
   
   return (
     <div className="p-4">
-      <h2 className="text-lg font-medium text-gray-900 mb-4">Aulas</h2>
+      <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Aulas</h2>
       
       <div className="space-y-2">
         {lessons.map((lesson) => {
@@ -19,7 +19,7 @@ const LessonSelector = ({ lessons, selectedLessonId, onLessonSelect }) => {
               className={`w-full flex items-center p-3 rounded-md transition-colors ${
                 isSelected
                   ? 'bg-quantum-light text-white'
-                  : 'hover:bg-gray-100 text-gray-700'
+                  : 'hover:bg-gray-100 text-gray-700 dark:hover:bg-gray-700 dark:text-white'
               }`}
               onClick={() => onLessonSelect(lesson.id)}
             >
@@ -37,7 +37,7 @@ const LessonSelector = ({ lessons, selectedLessonId, onLessonSelect }) => {
                         style={{ width: `${progress.progressPercentage}%` }}
                       ></div>
                     </div>
-                    <span className="ml-2 text-xs text-gray-500 min-w-[32px]">
+                    <span className="ml-2 text-xs text-gray-500 dark:text-gray-300 min-w-[32px]">
                       {progress.progressPercentage}%
                     </span>
                   </div>

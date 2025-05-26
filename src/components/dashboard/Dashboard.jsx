@@ -75,32 +75,32 @@ const Dashboard = () => {
     <div className="max-w-7xl mx-auto">
       {/* Welcome section */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
           Olá, {currentUser?.name || 'Estudante'}! 👋
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-600 dark:text-gray-300">
           Bem-vindo ao seu painel de aprendizado em Computação Quântica.
         </p>
       </div>
-      
+
       {/* Progress overview */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="card col-span-2">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">Seu progresso</h2>
+        <div className="card col-span-2 dark:bg-dark-lighter">
+          <h2 className="text-lg font-medium text-gray-900 mb-4 dark:text-white">Seu progresso</h2>
           <div className="flex items-center space-x-4 mb-4">
             <div className="h-4 flex-grow bg-gray-200 rounded-full overflow-hidden">
-              <div 
+              <div
                 className="h-4 bg-quantum-DEFAULT"
                 style={{ width: `${overallProgress}%` }}
               ></div>
             </div>
-            <span className="text-xl font-semibold">{overallProgress}%</span>
+            <span className="text-xl font-semibold dark:text-white">{overallProgress}%</span>
           </div>
           <ProgressChart />
         </div>
-        
-        <div className="card">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">Estatísticas</h2>
+
+        <div className="card dark:bg-dark-lighter">
+          <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Estatísticas</h2>
           <StatsSummary
             completedLessons={completedLessons}
             inProgressLessons={inProgressLessons.length}
@@ -108,21 +108,21 @@ const Dashboard = () => {
           />
         </div>
       </div>
-      
+
       {/* Next recommended lesson */}
       <div className="mb-8">
-        <h2 className="text-lg font-medium text-gray-900 mb-4">Continuar aprendendo</h2>
+        <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Continuar aprendendo</h2>
         <div className="bg-gradient-to-r from-quantum-light to-quantum-dark text-white rounded-lg p-6 shadow-md">
           <div className="flex items-start justify-between">
             <div>
               <span className="text-sm font-medium text-white/80">Recomendado para você</span>
               <h3 className="text-xl font-bold mb-2">{nextLesson.title}</h3>
               <p className="mb-4 text-white/90">{nextLesson.description}</p>
-              <Link 
+              <Link
                 to={`/chat/${nextLesson.id}`}
-                className="inline-flex items-center bg-white text-quantum-DEFAULT px-4 py-2 rounded-md font-medium hover:bg-gray-100 transition-colors"
+                className="inline-flex items-center bg-white text-quantum-DEFAULT px-4 py-2 rounded-md font-medium text-black hover:bg-gray-100 transition-colors"
               >
-                Continuar 
+                Continuar
                 <span className="ml-1">→</span>
               </Link>
             </div>
@@ -130,33 +130,33 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      
+
       {/* All lessons */}
       <div className="mb-8">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-medium text-gray-900">Todas as aulas</h2>
-          <Link 
+          <h2 className="text-lg font-medium text-gray-900 dark:text-white">Todas as aulas</h2>
+          <Link
             to="/chat"
             className="text-sm text-quantum-DEFAULT hover:underline"
           >
             Ver todas
           </Link>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {lessons.slice(0, 6).map(lesson => (
-            <LessonCard 
+            <LessonCard
               key={lesson.id}
               lesson={lesson}
             />
           ))}
         </div>
       </div>
-      
+
       {/* Recent activity */}
       <div className="mb-8">
-        <h2 className="text-lg font-medium text-gray-900 mb-4">Atividade recente</h2>
-        <div className="card divide-y divide-gray-200">
+        <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Atividade recente</h2>
+        <div className="card divide-y divide-gray-200 dark:bg-dark-lighter">
           {recentActivity.map(activity => (
             <div key={activity.id} className="py-3 first:pt-0 last:pb-0">
               <div className="flex items-start">
@@ -168,7 +168,7 @@ const Dashboard = () => {
                   )}
                 </div>
                 <div>
-                  <p className="text-gray-800">{activity.description}</p>
+                  <p className="text-gray-800 dark:text-white">{activity.description}</p>
                   <p className="text-xs text-gray-500 mt-1">
                     {new Date(activity.timestamp).toLocaleDateString('pt-BR', {
                       day: '2-digit',
