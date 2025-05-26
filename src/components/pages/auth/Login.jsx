@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+// import { useParams } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -8,6 +9,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const { login, loading } = useAuth();
   const navigate = useNavigate();
+  // const { role } = useParams();
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,21 +65,21 @@ const Login = () => {
             disabled={loading}
           />
         </div>
-        
+
         <div>
           <button
-            type="submit"
-            className="btn btn-primary w-full"
-            disabled={loading}
+              type="submit"
+              className="btn btn-primary w-full"
+              disabled={loading}
           >
             {loading ? (
-              <div className="quantum-loading">
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
+                <div className="quantum-loading my-2">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
             ) : (
-              'Entrar'
+                'Entrar'
             )}
           </button>
         </div>
@@ -85,13 +87,13 @@ const Login = () => {
         <div className="text-center text-sm">
           <div className="text-gray-600">
             Não tem uma conta?{' '}
-            <Link to="/register" className="text-quantum-DEFAULT hover:underline">
+            <Link to="/register" className="text-quantum hover:underline">
               Registre-se
             </Link>
           </div>
           
           <div className="mt-2 text-gray-600">
-            <a href="#" className="text-quantum-DEFAULT hover:underline">
+            <a href="#" className="text-quantum hover:underline">
               Esqueceu sua senha?
             </a>
           </div>
@@ -101,18 +103,17 @@ const Login = () => {
       <div className="mt-6 border-t border-gray-200 pt-4">
         <div className="text-xs text-gray-500 text-center">
           Ao entrar, você concorda com nossos{' '}
-          <a href="#" className="text-quantum-DEFAULT hover:underline">
+          <a href="#" className="text-quantum hover:underline">
             Termos de Serviço
           </a>{' '}
           e{' '}
-          <a href="#" className="text-quantum-DEFAULT hover:underline">
+          <a href="#" className="text-quantum hover:underline">
             Política de Privacidade
           </a>
         </div>
         
         <div className="mt-4 text-center text-xs text-gray-500">
           <span className="block">⚛️ Quantum Tutor - 2025</span>
-          <span>Sua jornada pela física quântica começa aqui</span>
         </div>
       </div>
     </div>
