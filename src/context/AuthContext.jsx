@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
           .map(part => part.charAt(0).toUpperCase() + part.slice(1))
           .join(' '), // Capitalize name parts
         email,
-        role: email.includes('admin') ? 'admin' : 'student',
+        role: 'admin',
         avatar: `https://ui-avatars.com/api/?name=${email.split('@')[0]}&background=random`,
       };
       
@@ -57,7 +57,6 @@ export const AuthProvider = ({ children }) => {
     setError(null);
     
     try {
-      // In a real app, this would be an API call
       // Simulating API call with timeout
       await new Promise(resolve => setTimeout(resolve, 1000));
       
@@ -66,7 +65,7 @@ export const AuthProvider = ({ children }) => {
         id: 'usr_' + Math.random().toString(36).substr(2, 9),
         name,
         email,
-        role: 'student',
+        role: 'admin',
         avatar: `https://ui-avatars.com/api/?name=${name}&background=random`,
       };
       
