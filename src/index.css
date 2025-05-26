@@ -7,15 +7,15 @@
     @apply bg-gray-50 text-gray-900 min-h-screen;
     font-family: 'Inter', sans-serif;
   }
-  
+
   h1 {
     @apply text-3xl font-bold mb-4;
   }
-  
+
   h2 {
     @apply text-2xl font-bold mb-3;
   }
-  
+
   h3 {
     @apply text-xl font-bold mb-2;
   }
@@ -93,7 +93,7 @@
 }
 
 .quantum-loading div {
-  @apply w-2 h-2 bg-quantum rounded-full;
+  @apply w-2 h-2 bg-grey-light rounded-full;
   animation: quantum-bounce 1.4s infinite ease-in-out both;
 }
 
