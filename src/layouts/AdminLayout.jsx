@@ -7,9 +7,9 @@ const AdminLayout = () => {
   const navigate = useNavigate();
   
   // Redirect to dashboard if not admin
-  if (!isAdmin) {
-    return navigate('/dashboard');
-  }
+  // if (!isAdmin) {
+  //   return navigate('/dashboard');
+  // }
   
   const handleLogout = () => {
     logout();
@@ -64,7 +64,7 @@ const AdminLayout = () => {
       {/* Admin Content */}
       <div className="flex-grow flex">
         {/* Admin Sidebar */}
-        <nav className="w-64 bg-gray-800 text-white">
+        <nav className="w-64 bg-gray-900 text-white">
           <div className="p-4">
             <h2 className="text-lg font-semibold mb-4">Administração</h2>
             <div className="space-y-2">
@@ -92,18 +92,27 @@ const AdminLayout = () => {
               >
                 Conversas
               </a>
-              <a
-                href="#settings"
-                className="block px-4 py-2 text-sm rounded hover:bg-gray-700"
+
+              {/* Se for admin */}
+              {/*<a*/}
+              {/*    href="#Professors"*/}
+              {/*    className="block px-4 py-2 text-sm rounded hover:bg-gray-700"*/}
+              {/*>*/}
+              {/*  Professores*/}
+              {/*</a>*/}
+
+              <Link
+                  to="/admin/settings"
+                  className="block px-4 py-2 text-sm rounded hover:bg-gray-700"
               >
                 Configurações
-              </a>
+              </Link>
             </div>
           </div>
         </nav>
         
         {/* Admin Main Content */}
-        <main className="flex-1 overflow-y-auto bg-white p-6">
+        <main className="flex-1 overflow-y-auto bg-white dark:bg-dark p-6">
           <Outlet />
         </main>
       </div>
