@@ -19,22 +19,26 @@ import { AuthProvider } from './context/AuthContext.jsx';
 import { ChatProvider } from './context/ChatContext';
 import { ProgressProvider } from './context/ProgressContext';
 
+// Theme
+import {useTheme} from './components/theme/useTheme';
+import Settings from "./components/admin/Settings";
+
 // PrivateRoute component for protected routes
 const PrivateRoute = ({ children }) => {
-  // Check if user is authenticated (simplified - in real app use proper auth check)
   const isAuthenticated = localStorage.getItem('quantumUser') !== null;
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
 // AdminRoute component for admin-only routes
 const AdminRoute = ({ children }) => {
-  // Check if user is admin (simplified - in real app use proper role check)
   const user = JSON.parse(localStorage.getItem('quantumUser') || '{}');
   const isAdmin = user.role === 'admin';
   return isAdmin ? children : <Navigate to="/dashboard" />;
 };
 
 function App() {
+  const [theme] = useTheme();
+
   return (
     <AuthProvider>
       <ProgressProvider>
@@ -44,8 +48,10 @@ function App() {
               {/* Auth Routes */}
               <Route path="/" element={<AuthLayout />}>
                 <Route index element={<Navigate to="/login" />} />
-                <Route path="login" element={<Login />} />
-                <Route path="register" element={<Register />} />
+                {/*<Route path="select" element={<Select />} />*/}
+                {/*<Route path="login" element={<Select />} />*/}
+                <Route path="login/*" element={<Login />} />
+                <Route path="register/*" element={<Register />} />
               </Route>
 
               {/* Main App Routes */}
@@ -62,14 +68,15 @@ function App() {
               {/* Admin Routes */}
               <Route path="/admin" element={
                 <AdminRoute>
-                  <AdminLayout />
+                  <AdminLayout/>
                 </AdminRoute>
               }>
                 <Route index element={<AdminDashboard />} />
+                <Route path="/admin/settings" element={<Settings />} />
               </Route>
 
               {/* Fallback Route */}
-              <Route path="*" element={<Navigate to="/dashboard" />} />
+              {/*<Route path="*" element={<Navigate to="/dashboard" />} />*/}
             </Routes>
           </Router>
         </ChatProvider>
