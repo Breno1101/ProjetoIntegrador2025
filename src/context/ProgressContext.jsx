@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext, useCallback } from 'react';
-import AuthContext from './AuthContext';
+import {AuthContext} from './AuthContext';
 
 // Create Progress Context
 export const ProgressContext = createContext();
@@ -13,7 +13,8 @@ export const ProgressProvider = ({ children }) => {
   // Load progress from localStorage on mount or when user changes
   useEffect(() => {
     if (currentUser) {
-      const storedProgress = localStorage.getItem(`quantum_progress_${currentUser.id}`);
+      const storedProgress = localStorage.getItem(`quantum_progress_${currentUser.user_id}`);
+      // const storedProgress = localStorage.getItem(`quantum_progress_${currentUser.id}`);
       if (storedProgress) {
         setUserProgress(JSON.parse(storedProgress));
       } else {
@@ -39,7 +40,7 @@ export const ProgressProvider = ({ children }) => {
   useEffect(() => {
     if (currentUser && Object.keys(userProgress).length > 0) {
       localStorage.setItem(
-        `quantum_progress_${currentUser.id}`,
+        `quantum_progress_${currentUser.user_id}`,
         JSON.stringify(userProgress)
       );
     }
