@@ -3,11 +3,14 @@ import { Outlet, Navigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 const AuthLayout = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, permission } = useAuth();
   
   // Redirect to dashboard if already authenticated
-  if (isAuthenticated) {
+  if (isAuthenticated && permission === 1) {
     return <Navigate to="/dashboard" />;
+  }
+  else if (isAuthenticated && (permission === 2 || permission === 3)) {
+    return <Navigate to="/admin" />;
   }
   
   return (
