@@ -12,35 +12,11 @@ const Profile = () => {
 
   const [selectedTheme, setSelectedTheme] = useState("");
   const [activeTab, setActiveTab] = useState('profile');
-  const [isEditing, setIsEditing] = useState(false);
-  const [profileData, setProfileData] = useState({
-    name: currentUser?.name || '',
-    email: currentUser?.email || '',
-    notifications: true,
-    theme: 'light'
-  });
   
   const lessons = getLessons();
   const conversations = getAllConversations();
   const overallProgress = getOverallProgress();
   const completedLessons = getCompletedLessonsCount();
-  
-  // Handle profile form submission
-  const handleSubmitProfile = (e) => {
-    e.preventDefault();
-    // In a real app, this would update the user's profile
-    // For now, just toggle editing mode
-    setIsEditing(false);
-  };
-  
-  // Handle profile field changes
-  const handleProfileChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setProfileData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-  };
   
   // Handle clearing conversation for a lesson
   const handleClearConversation = (lessonId) => {

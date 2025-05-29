@@ -15,24 +15,26 @@ import Profile from './components/pages/profile/Profile.jsx';
 import AdminDashboard from './components/admin/AdminDashboard.jsx';
 
 // Context Providers
-import { AuthProvider } from './context/AuthContext.jsx';
+import {AuthProvider} from './context/AuthContext.jsx';
 import { ChatProvider } from './context/ChatContext';
 import { ProgressProvider } from './context/ProgressContext';
 
 // Theme
 import {useTheme} from './components/theme/useTheme';
 import Settings from "./components/admin/Settings";
+import {AdminProvider} from "./context/AdminContext";
 
 // PrivateRoute component for protected routes
 const PrivateRoute = ({ children }) => {
-  const isAuthenticated = localStorage.getItem('quantumUser') !== null;
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  const user = JSON.parse(localStorage.getItem('quantumUser') || '{}');
+  const isStudent = user.permission === 1;
+  return isStudent ? children : <Navigate to="/admin" />;
 };
 
 // AdminRoute component for admin-only routes
 const AdminRoute = ({ children }) => {
   const user = JSON.parse(localStorage.getItem('quantumUser') || '{}');
-  const isAdmin = user.role === 'admin';
+  const isAdmin = user.permission >= 2;
   return isAdmin ? children : <Navigate to="/dashboard" />;
 };
 
@@ -43,42 +45,42 @@ function App() {
     <AuthProvider>
       <ProgressProvider>
         <ChatProvider>
-          <Router>
-            <Routes>
-              {/* Auth Routes */}
-              <Route path="/" element={<AuthLayout />}>
-                <Route index element={<Navigate to="/login" />} />
-                {/*<Route path="select" element={<Select />} />*/}
-                {/*<Route path="login" element={<Select />} />*/}
-                <Route path="login/*" element={<Login />} />
-                <Route path="register/*" element={<Register />} />
-              </Route>
+          <AdminProvider>
+            <Router>
+              <Routes>
+                {/* Auth Routes */}
+                <Route path="/" element={<AuthLayout />}>
+                  <Route index element={<Navigate to="/login" />} />
+                  <Route path="login/*" element={<Login />} />
+                  {/*<Route path="register/*" element={<Register />} />*/}
+                </Route>
 
-              {/* Main App Routes */}
-              <Route path="/" element={
-                <PrivateRoute>
-                  <MainLayout />
-                </PrivateRoute>
-              }>
-                <Route path="dashboard" element={<Dashboard />} />
-                <Route path="chat/:lessonId?" element={<ChatPage />} />
-                <Route path="profile" element={<Profile />} />
-              </Route>
+                {/* Main App Routes */}
+                <Route path="/" element={
+                  <PrivateRoute>
+                    <MainLayout />
+                  </PrivateRoute>
+                }>
+                  <Route path="dashboard" element={<Dashboard />} />
+                  <Route path="chat/:lessonId?" element={<ChatPage />} />
+                  <Route path="profile" element={<Profile />} />
+                </Route>
 
-              {/* Admin Routes */}
-              <Route path="/admin" element={
-                <AdminRoute>
-                  <AdminLayout/>
-                </AdminRoute>
-              }>
-                <Route index element={<AdminDashboard />} />
-                <Route path="/admin/settings" element={<Settings />} />
-              </Route>
+                {/* Admin Routes */}
+                <Route path="/admin" element={
+                  <AdminRoute>
+                    <AdminLayout/>
+                  </AdminRoute>
+                }>
+                  <Route index element={<AdminDashboard />} />
+                  <Route path="/admin/settings" element={<Settings />} />
+                </Route>
 
-              {/* Fallback Route */}
-              {/*<Route path="*" element={<Navigate to="/dashboard" />} />*/}
-            </Routes>
-          </Router>
+                {/* Fallback Route */}
+                {/*<Route path="*" element={<Navigate to="/dashboard" />} />*/}
+              </Routes>
+            </Router>
+          </AdminProvider>
         </ChatProvider>
       </ProgressProvider>
     </AuthProvider>

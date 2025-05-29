@@ -1,5 +1,5 @@
 import React, { createContext, useState, useCallback, useContext, useEffect } from 'react';
-import AuthContext from './AuthContext';
+import {AuthContext} from './AuthContext';
 
 // Create Chat Context
 export const ChatContext = createContext();
@@ -88,7 +88,7 @@ export const ChatProvider = ({ children }) => {
   // Load conversations from localStorage on mount or when user changes
   useEffect(() => {
     if (currentUser) {
-      const storedConversations = localStorage.getItem(`quantum_conversations_${currentUser.id}`);
+      const storedConversations = localStorage.getItem(`quantum_conversations_${currentUser.user_id}`);
       if (storedConversations) {
         setConversations(JSON.parse(storedConversations));
       }
@@ -99,7 +99,7 @@ export const ChatProvider = ({ children }) => {
   useEffect(() => {
     if (currentUser && Object.keys(conversations).length > 0) {
       localStorage.setItem(
-        `quantum_conversations_${currentUser.id}`,
+        `quantum_conversations_${currentUser.user_id}`,
         JSON.stringify(conversations)
       );
     }

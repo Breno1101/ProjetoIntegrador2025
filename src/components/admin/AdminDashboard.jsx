@@ -5,27 +5,38 @@ import useProgress from '../../hooks/useProgress';
 import StudentList from '../../components/admin/StudentList';
 import ProgressOverview from '../../components/admin/ProgressOverview';
 import ChatHistory from '../../components/admin/ChatHistory';
+import useAdmin from "../../hooks/useAdmin";
 
 const AdminDashboard = () => {
   const { getAllUsersProgress, loading } = useProgress();
+  const { getAllUsers } = useAdmin();
   const [students, setStudents] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [activeSection, setActiveSection] = useState('overview');
-  
+
   // Fetch students data
   useEffect(() => {
     const fetchData = async () => {
       const usersProgress = await getAllUsersProgress();
       setStudents(usersProgress);
-      
+
       // Set first student as selected by default
       if (usersProgress.length > 0 && !selectedStudent) {
         setSelectedStudent(usersProgress[0]);
       }
     };
-    
+
     fetchData();
   }, [getAllUsersProgress, selectedStudent]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await getAllUsers();
+      console.log(response.filter(user => user.permission === 1));
+    };
+
+    fetchUsers();
+  }, [getAllUsers])
   
   // Summary stats for the dashboard
   const getStats = () => {

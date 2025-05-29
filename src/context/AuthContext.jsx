@@ -1,12 +1,29 @@
 import React, { createContext, useState, useEffect, useCallback } from 'react';
+import { AuthRepositoryHttp } from '../api/repositories/auth_repository_http'
+
+const defaultAuthContext = {
+    login: async (email, password) => {
+        return {
+            token: '',
+        }
+    },
+    logout: () => {},
+    currentUser: null,
+    loading: false,
+    error: null,
+    isAuthenticated: false,
+    admin: false,
+}
 
 // Create Auth Context
-export const AuthContext = createContext();
+export const AuthContext = createContext(defaultAuthContext)
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+    const authRepository = new AuthRepositoryHttp()
 
   // Check if user is already logged in on mount
   useEffect(() => {
@@ -21,61 +38,19 @@ export const AuthProvider = ({ children }) => {
   const login = useCallback(async (email, password) => {
     setLoading(true);
     setError(null);
-    
-    try {
-      // In a real app, this would be an API call
-      // Simulating API call with timeout
-      await new Promise(resolve => setTimeout(resolve, 800));
-      
-      // Mock response - in real app, this would come from backend
-      const userData = {
-        id: 'usr_' + Math.random().toString(36).substr(2, 9),
-        name: email.split('@')[0]
-          .split('.')
-          .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-          .join(' '), // Capitalize name parts
-        email,
-        role: 'admin',
-        avatar: `https://ui-avatars.com/api/?name=${email.split('@')[0]}&background=random`,
-      };
-      
-      // Store user in localStorage
-      localStorage.setItem('quantumUser', JSON.stringify(userData));
-      setCurrentUser(userData);
-      return userData;
-    } catch (err) {
-      setError(err.message || 'Falha ao fazer login');
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }, []);
 
-  // Register function
-  const register = useCallback(async (name, email, password) => {
-    setLoading(true);
-    setError(null);
-    
     try {
-      // Simulating API call with timeout
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Mock response - in real app, this would come from backend
-      const userData = {
-        id: 'usr_' + Math.random().toString(36).substr(2, 9),
-        name,
-        email,
-        role: 'admin',
-        avatar: `https://ui-avatars.com/api/?name=${name}&background=random`,
-      };
-      
-      // Store user in localStorage
-      localStorage.setItem('quantumUser', JSON.stringify(userData));
+      const data = await authRepository.login(email, password)
+      const token = data.token; // Pega só a string do token
+      localStorage.setItem('quantumToken', token);
+      localStorage.setItem('quantumUser', JSON.stringify(token));
+      const userData = getUserByEmail(email)
       setCurrentUser(userData);
       return userData;
     } catch (err) {
-      setError(err.message || 'Falha ao registrar');
-      throw err;
+      const message = err?.message || 'Falha ao fazer login';
+      setError(message);
+      return Promise.reject(new Error(message));
     } finally {
       setLoading(false);
     }
@@ -83,8 +58,24 @@ export const AuthProvider = ({ children }) => {
 
   // Logout function
   const logout = useCallback(() => {
+    localStorage.removeItem('quantumToken');
     localStorage.removeItem('quantumUser');
     setCurrentUser(null);
+  }, []);
+
+  const getUserByEmail = useCallback(async (email) => {
+    try {
+      const userData = await authRepository.getUserByEmail(email);
+      setCurrentUser(userData);
+      localStorage.setItem('quantumUser', JSON.stringify(userData))
+      return userData;
+    } catch (err) {
+      const message = err?.message || 'Falha ao buscar usuário';
+      setError(message);
+      return Promise.reject(new Error(message));
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   // Context value
@@ -93,10 +84,9 @@ export const AuthProvider = ({ children }) => {
     loading,
     error,
     login,
-    register,
     logout,
     isAuthenticated: !!currentUser,
-    isAdmin: currentUser?.role === 'admin'
+    permission: currentUser?.permission,
   };
 
   return (
