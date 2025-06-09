@@ -4,11 +4,9 @@ export class AuthRepositoryHttp {
     async login(email, password) {
         try {
             const response = await http.post(`/login`, { email, password });
-            console.log("data")
-            console.log(response)
             return response.data;
         } catch (error) {
-            let message = 'Erro ao fazer login';
+            let message;
 
             if (error.response) {
                 // Requisição feita e resposta recebida, mas com erro HTTP
@@ -22,7 +20,7 @@ export class AuthRepositoryHttp {
             } else if (error.request) {
                 message = 'Falha ao se conectar. Verifique sua internet.';
             } else {
-                message = error.message || 'Erro inesperado';
+                message = error.message || 'Erro ao fazer login';
             }
 
             return Promise.reject(new Error(message));
@@ -30,9 +28,6 @@ export class AuthRepositoryHttp {
     }
 
     async getUserByEmail(email) {
-        const token = localStorage.getItem('quantumToken');
-        console.log('Token usado no getUserByEmail:', token);
-
         try {
             const response = await http.get('/users', {
                 params: { email }
@@ -40,10 +35,21 @@ export class AuthRepositoryHttp {
             return response.data;
         } catch (error) {
             const message =
-                error?.response?.data?.message || error?.message || 'Erro ao buscar usuário';
+                error?.response?.data?.message || error?.message || 'Erro ao buscar usuário por email';
             return Promise.reject(new Error(message));
         }
     }
 
-
+    async getUserById(user_id) {
+        try {
+            const response = await http.get('/users', {
+                params: { user_id }
+            });
+            return response.data;
+        } catch (error) {
+            const message =
+                error?.response?.data?.message || error?.message || 'Erro ao buscar usuário por ID';
+            return Promise.reject(new Error(message));
+        }
+    }
 }
