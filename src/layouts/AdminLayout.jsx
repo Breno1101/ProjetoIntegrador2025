@@ -41,7 +41,7 @@ const AdminLayout = () => {
                 <div className="flex items-center">
                   <img
                     className="h-8 w-8 rounded-full"
-                    src={currentUser?.avatar || 'https://ui-avatars.com/api/?name=Admin&background=random'}
+                    src={`https://ui-avatars.com/api/?name=${currentUser?.name}&background=random`}
                     alt="Admin avatar"
                   />
                   <span className="ml-2 text-sm font-medium text-gray-300">

@@ -60,7 +60,7 @@ const MainLayout = () => {
                 <div className="flex items-center">
                   <img
                     className="h-8 w-8 rounded-full"
-                    src={currentUser?.avatar || 'https://ui-avatars.com/api/?name=User&background=random'}
+                    src={`https://ui-avatars.com/api/?name=${currentUser?.name}&background=random`}
                     alt="User avatar"
                   />
                   <span className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300">

@@ -72,7 +72,7 @@ const Profile = () => {
             <div className="flex justify-between items-start">
               <div className="flex items-center">
                 <img
-                  src={currentUser?.avatar || 'https://ui-avatars.com/api/?name=User&background=random'}
+                  src={`https://ui-avatars.com/api/?name=${currentUser?.name}&background=random`}
                   alt="Settings"
                   className="h-24 w-24 rounded-full object-cover"
                 />
