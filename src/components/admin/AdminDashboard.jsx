@@ -32,7 +32,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       const response = await getAllUsers();
-      console.log(response.filter(user => user.permission === 1));
+      console.log(response.filter(user => user.permission === '1'));
     };
 
     fetchUsers();

@@ -9,7 +9,7 @@ const defaultAdminContext = {
                     user_id: '',
                     name: '',
                     email: '',
-                    permission: 0,
+                    permission: '',
                 }
             ]
         }
