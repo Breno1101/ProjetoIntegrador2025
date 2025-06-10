@@ -15,51 +15,52 @@ const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('overview');
 
   // Fetch students data
-  useEffect(() => {
-    const fetchData = async () => {
-      const usersProgress = await getAllUsersProgress();
-      setStudents(usersProgress);
-
-      // Set first student as selected by default
-      if (usersProgress.length > 0 && !selectedStudent) {
-        setSelectedStudent(usersProgress[0]);
-      }
-    };
-
-    fetchData();
-  }, [getAllUsersProgress, selectedStudent]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const usersProgress = await getAllUsersProgress();
+  //     setStudents(usersProgress);
+  //
+  //     // Set first student as selected by default
+  //     if (usersProgress.length > 0 && !selectedStudent) {
+  //       setSelectedStudent(usersProgress[0]);
+  //     }
+  //   };
+  //
+  //   fetchData();
+  // }, [getAllUsersProgress, selectedStudent]);
 
   useEffect(() => {
     const fetchUsers = async () => {
       const response = await getAllUsers();
-      console.log(response.filter(user => user.permission === '1'));
+      console.log(response);
+      setStudents(response.filter(user => user.permission === 1));
     };
 
     fetchUsers();
   }, [getAllUsers])
-  
+  //
   // Summary stats for the dashboard
-  const getStats = () => {
-    if (students.length === 0) return {};
-    
-    const totalStudents = students.length;
-    const averageProgress = students.reduce((sum, student) => sum + student.progress.overall, 0) / totalStudents;
-    const activeLastWeek = students.filter(student => {
-      const lastActive = new Date(student.progress.lastActive);
-      const weekAgo = new Date();
-      weekAgo.setDate(weekAgo.getDate() - 7);
-      return lastActive >= weekAgo;
-    }).length;
-    
-    return {
-      totalStudents,
-      averageProgress: Math.round(averageProgress),
-      activeLastWeek,
-      completionRate: Math.round((students.filter(s => s.progress.completedLessons === 10).length / totalStudents) * 100)
-    };
-  };
+  // const getStats = () => {
+  //   if (students.length === 0) return {};
+  //
+  //   const totalStudents = students.length;
+  //   const averageProgress = students.reduce((sum, student) => sum + student.progress.overall, 0) / totalStudents;
+  //   const activeLastWeek = students.filter(student => {
+  //     const lastActive = new Date(student.progress.lastActive);
+  //     const weekAgo = new Date();
+  //     weekAgo.setDate(weekAgo.getDate() - 7);
+  //     return lastActive >= weekAgo;
+  //   }).length;
+  //
+  //   return {
+  //     totalStudents,
+  //     averageProgress: Math.round(averageProgress),
+  //     activeLastWeek,
+  //     completionRate: Math.round((students.filter(s => s.progress.completedLessons === 10).length / totalStudents) * 100)
+  //   };
+  // };
   
-  const stats = getStats();
+  // const stats = getStats();
   
   // Handle student selection
   const handleSelectStudent = (student) => {
@@ -85,7 +86,7 @@ const AdminDashboard = () => {
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-500 dark:text-gray-300">Total de Estudantes</p>
-              <p className="text-2xl font-semibold text-gray-900 dark:text-white">{stats.totalStudents || 0}</p>
+              {/*<p className="text-2xl font-semibold text-gray-900 dark:text-white">{stats.totalStudents || 0}</p>*/}
             </div>
           </div>
         </div>
@@ -97,7 +98,7 @@ const AdminDashboard = () => {
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-500 dark:text-gray-300">Progresso Médio</p>
-              <p className="text-2xl font-semibold text-gray-900 dark:text-white">{stats.averageProgress || 0}%</p>
+              {/*<p className="text-2xl font-semibold text-gray-900 dark:text-white">{stats.averageProgress || 0}%</p>*/}
             </div>
           </div>
         </div>
@@ -121,7 +122,7 @@ const AdminDashboard = () => {
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-500 dark:text-gray-300">Taxa de Conclusão</p>
-              <p className="text-2xl font-semibold text-gray-900 dark:text-white">{stats.completionRate || 0}%</p>
+              {/*<p className="text-2xl font-semibold text-gray-900 dark:text-white">{stats.completionRate || 0}%</p>*/}
             </div>
           </div>
         </div>
@@ -204,18 +205,18 @@ const AdminDashboard = () => {
                         <h3 className="text-sm font-medium text-gray-500 dark:text-gray-300 mb-2">Progresso Geral</h3>
                         <div className="flex items-center">
                           <div className="w-full h-4 bg-gray-200 rounded-full mr-2">
-                            <div
-                              className="h-4 bg-quantum rounded-full"
-                              style={{ width: `${selectedStudent.progress.overall}%` }}
-                            ></div>
+                            {/*<div*/}
+                            {/*  className="h-4 bg-quantum rounded-full"*/}
+                            {/*  style={{ width: `${selectedStudent.progress.overall}%` }}*/}
+                            {/*></div>*/}
                           </div>
-                          <span className="text-sm font-medium dark:text-white">{selectedStudent.progress.overall}%</span>
+                          {/*<span className="text-sm font-medium dark:text-white">{selectedStudent.progress.overall}%</span>*/}
                         </div>
                       </div>
                       
                       <div className="bg-gray-50 dark:bg-gray-600 p-4 rounded-lg">
                         <h3 className="text-sm font-medium text-gray-500 dark:text-gray-300 mb-2">Aulas Completadas</h3>
-                        <p className="text-2xl font-semibold dark:text-white">{selectedStudent.progress.completedLessons} / 10</p>
+                        {/*<p className="text-2xl font-semibold dark:text-white">{selectedStudent.progress.completedLessons} / 10</p>*/}
                       </div>
                       
                       <div className="bg-gray-50 dark:bg-gray-600 p-4 rounded-lg">
