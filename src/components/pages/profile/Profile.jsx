@@ -26,7 +26,7 @@ const Profile = () => {
   };
   
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
       <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Seu Perfil</h1>
       
       {/* Settings tabs */}
@@ -129,7 +129,7 @@ const Profile = () => {
                         <div className="flex items-center mt-1">
                           <div className="w-32 h-2 bg-gray-200 rounded-full mr-2">
                             <div
-                              className="h-2 bg-quantum-DEFAULT rounded-full"
+                              className="h-2 bg-quantum rounded-full"
                               style={{ width: `${hasConversation ? Math.max(10, Math.min(conversations[lesson.id].length * 5, 100)) : 0}%` }}
                             ></div>
                           </div>

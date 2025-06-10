@@ -198,7 +198,7 @@ const Settings = () => {
                               <div className="flex items-center mt-1">
                                 <div className="w-32 h-2 bg-gray-200 rounded-full mr-2">
                                   <div
-                                      className="h-2 bg-quantum-DEFAULT rounded-full"
+                                      className="h-2 bg-quantum rounded-full"
                                       style={{ width: `${hasConversation ? Math.max(10, Math.min(conversations[lesson.id].length * 5, 100)) : 0}%` }}
                                   ></div>
                                 </div>
