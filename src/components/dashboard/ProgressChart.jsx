@@ -34,7 +34,7 @@ const ProgressChart = () => {
               style={{ height: `${Math.max(4, item.progress)}px` }}
             >
               <div 
-                className="h-full bg-quantum-DEFAULT rounded-t-sm" 
+                className="h-full bg-quantum rounded-t-sm"
                 style={{ width: '100%' }}
               ></div>
             </div>

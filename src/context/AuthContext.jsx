@@ -4,8 +4,27 @@ import { AuthRepositoryHttp } from '../api/repositories/auth_repository_http'
 const defaultAuthContext = {
     login: async (email, password) => {
         return {
-            token: '',
+          name: "",
+          user_id: "",
+          permission: "",
+          token: ""
         }
+    },
+    getUserByEmail: async (email) => {
+        return {
+          name: "",
+          user_id: "",
+          permission: "",
+          email: ""
+        }
+    },
+    getUserById: async (email) => {
+      return {
+        name: "",
+        user_id: "",
+        permission: "",
+        email: ""
+      }
     },
     logout: () => {},
     currentUser: null,
@@ -43,10 +62,9 @@ export const AuthProvider = ({ children }) => {
       const data = await authRepository.login(email, password)
       const token = data.token; // Pega só a string do token
       localStorage.setItem('quantumToken', token);
-      localStorage.setItem('quantumUser', JSON.stringify(token));
-      const userData = getUserByEmail(email)
-      setCurrentUser(userData);
-      return userData;
+      localStorage.setItem('quantumUser', JSON.stringify(data));
+      setCurrentUser(data);
+      return data;
     } catch (err) {
       const message = err?.message || 'Falha ao fazer login';
       setError(message);
@@ -65,10 +83,19 @@ export const AuthProvider = ({ children }) => {
 
   const getUserByEmail = useCallback(async (email) => {
     try {
-      const userData = await authRepository.getUserByEmail(email);
-      setCurrentUser(userData);
-      localStorage.setItem('quantumUser', JSON.stringify(userData))
-      return userData;
+      return await authRepository.getUserByEmail(email);
+    } catch (err) {
+      const message = err?.message || 'Falha ao buscar usuário';
+      setError(message);
+      return Promise.reject(new Error(message));
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  const getUserById = useCallback(async (id) => {
+    try {
+      return await authRepository.getUserById(id);
     } catch (err) {
       const message = err?.message || 'Falha ao buscar usuário';
       setError(message);
@@ -85,6 +112,8 @@ export const AuthProvider = ({ children }) => {
     error,
     login,
     logout,
+    getUserByEmail,
+    getUserById,
     isAuthenticated: !!currentUser,
     permission: currentUser?.permission,
   };

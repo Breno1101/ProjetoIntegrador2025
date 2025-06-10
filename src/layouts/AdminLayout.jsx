@@ -19,14 +19,14 @@ const AdminLayout = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       {/* Admin Header */}
-      <header className="bg-gray-900 text-white shadow-md">
+      <header className="bg-gray-900 text-white shadow-md z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link to="/admin" className="flex-shrink-0 flex items-center">
                 <span className="text-2xl mr-1">⚛️</span>
                 <span className="font-bold text-white text-xl">Quantum Tutor</span>
-                <span className="ml-2 bg-quantum-DEFAULT text-white text-xs font-bold px-2 py-1 rounded">
+                <span className="ml-2 bg-quantum text-white text-xs font-bold px-2 py-1 rounded">
                   ADMIN
                 </span>
               </Link>
@@ -41,7 +41,7 @@ const AdminLayout = () => {
                 <div className="flex items-center">
                   <img
                     className="h-8 w-8 rounded-full"
-                    src={currentUser?.avatar || 'https://ui-avatars.com/api/?name=Admin&background=random'}
+                    src={`https://ui-avatars.com/api/?name=${currentUser?.name}&background=random`}
                     alt="Admin avatar"
                   />
                   <span className="ml-2 text-sm font-medium text-gray-300">
@@ -62,9 +62,9 @@ const AdminLayout = () => {
       </header>
       
       {/* Admin Content */}
-      <div className="flex-grow flex">
+      <div className="flex-grow flex h-[calc(100vh-4rem)] overflow-hidden">
         {/* Admin Sidebar */}
-        <nav className="w-64 bg-gray-900 text-white">
+        <nav className="w-64 bg-gray-900 text-white flex-shrink-0 overflow-y-auto">
           <div className="p-4">
             <h2 className="text-lg font-semibold mb-4">Administração</h2>
             <div className="space-y-2">

@@ -1,15 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 const AuthLayout = () => {
   const { isAuthenticated, permission } = useAuth();
-  
-  // Redirect to dashboard if already authenticated
-  if (isAuthenticated && permission === 1) {
+
+  if (isAuthenticated && permission === "1") {
     return <Navigate to="/dashboard" />;
   }
-  else if (isAuthenticated && (permission === 2 || permission === 3)) {
+  else if (isAuthenticated && (permission === "2" || permission === "3")) {
     return <Navigate to="/admin" />;
   }
   

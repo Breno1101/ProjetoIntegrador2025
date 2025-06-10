@@ -38,7 +38,7 @@ const ChatInput = ({ onSendMessage, disabled, placeholder }) => {
       </div>
       <button
         type="submit"
-        className="bg-quantum-DEFAULT text-white rounded-lg p-2 h-10 w-10 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+        className="bg-quantum text-white rounded-lg p-2 h-10 w-10 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={!message.trim() || disabled}
       >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5">

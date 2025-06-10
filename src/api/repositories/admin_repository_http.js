@@ -10,9 +10,18 @@ export class AdminRepositoryHttp {
         }
     }
 
-    async getAllUsers(email, password) {
+    async getAllUsers() {
         try {
             const response = await http.get(`/users/all`);
+            return response.data;
+        } catch (error) {
+            return Promise.reject(new Error(error));
+        }
+    }
+
+    async deleteUser(userId, name) {
+        try {
+            const response = await http.delete(`/delete_user?${userId}?name${name}`);
             return response.data;
         } catch (error) {
             return Promise.reject(new Error(error));

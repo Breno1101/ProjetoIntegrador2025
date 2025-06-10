@@ -33,7 +33,7 @@ const LessonSelector = ({ lessons, selectedLessonId, onLessonSelect }) => {
                   <div className="mt-1 flex items-center">
                     <div className="w-full h-1 bg-gray-200 rounded-full overflow-hidden">
                       <div
-                        className="h-1 bg-quantum-DEFAULT"
+                        className="h-1 bg-quantum"
                         style={{ width: `${progress.progressPercentage}%` }}
                       ></div>
                     </div>

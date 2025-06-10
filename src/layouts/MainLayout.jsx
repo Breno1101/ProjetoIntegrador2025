@@ -30,7 +30,7 @@ const MainLayout = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark flex flex-col">
       {/* Top Navigation */}
-      <header className="bg-white dark:bg-dark-darker shadow-sm">
+      <header className="bg-white dark:bg-dark-darker shadow-sm z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 ">
             <div className="flex items-center">
@@ -49,7 +49,7 @@ const MainLayout = () => {
                   </div>
                   <div className="h-2 bg-gray-200 rounded-full w-24">
                     <div
-                      className="h-2 bg-quantum-DEFAULT rounded-full"
+                      className="h-2 bg-quantum rounded-full"
                       style={{ width: `${overallProgress}%` }}
                     ></div>
                   </div>
@@ -60,7 +60,7 @@ const MainLayout = () => {
                 <div className="flex items-center">
                   <img
                     className="h-8 w-8 rounded-full"
-                    src={currentUser?.avatar || 'https://ui-avatars.com/api/?name=User&background=random'}
+                    src={`https://ui-avatars.com/api/?name=${currentUser?.name}&background=random`}
                     alt="User avatar"
                   />
                   <span className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -154,9 +154,9 @@ const MainLayout = () => {
       </header>
 
       {/* Sidebar and Main Content */}
-      <div className="flex-grow flex">
+      <div className="flex-grow flex h-[calc(100vh-4rem)] overflow-hidden">
         {/* Sidebar */}
-        <nav className="hidden md:block w-64 bg-white border-r border-gray-200 dark:border-gray-700 pt-5 dark:bg-dark-darker">
+        <nav className="hidden md:block w-64 bg-white border-r border-gray-200 dark:border-gray-700 pt-5 dark:bg-dark-darker overflow-y-auto">
           <div className="px-4 space-y-1">
             <Link
               to="/dashboard"
@@ -202,7 +202,7 @@ const MainLayout = () => {
         </nav>
 
         {/* Main content */}
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+        <main className="flex-1 overflow-y-auto">
           <Outlet />
         </main>
       </div>

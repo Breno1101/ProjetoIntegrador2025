@@ -105,7 +105,7 @@ const ChatPage = () => {
                     </div>
                     <div className="w-20 h-2 bg-gray-200 rounded-full">
                       <div 
-                        className="h-2 bg-quantum-DEFAULT rounded-full" 
+                        className="h-2 bg-quantum rounded-full"
                         style={{ width: `${currentLessonProgress.progressPercentage}%` }}
                       ></div>
                     </div>
