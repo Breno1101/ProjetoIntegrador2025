@@ -5,7 +5,7 @@ import UserAvatar from './UserAvatar';
 import { useLocation } from 'react-router-dom';
 
 
-const AdminLayout = () => {
+const ProfessorLayout = () => {
   const { currentUser, logout, isAdmin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,14 +24,14 @@ const AdminLayout = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       {/* Admin Header */}
-      <header className="bg-gray-900 text-white shadow-md z-10">
+      <header className="bg-gray-900 text-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link to="/admin" className="flex-shrink-0 flex items-center justify-start">
                 <span className="text-2xl mr-1">⚛️</span>
                 <span className="font-bold text-white text-xl">Quantum Tutor</span>
-                <span className="ml-2 bg-quantum text-white text-xs font-bold px-2 py-1 rounded">
+                <span className="ml-2 bg-quantum-DEFAULT text-white text-xs font-bold px-2 py-1 rounded">
                   ADMIN
                 </span>
               </Link>
@@ -62,9 +62,9 @@ const AdminLayout = () => {
       </header>
 
       {/* Admin Content */}
-      <div className="flex-grow flex h-[calc(100vh-4rem)] overflow-hidden">
+      <div className="flex-grow flex ">
         {/* Admin Sidebar */}
-        <nav className="w-64 bg-gray-900 text-white flex-shrink-0 overflow-y-auto">
+        <nav className="w-64 bg-gray-900 text-white">
           <div className="p-4">
             <h2 className="text-lg font-semibold mb-4">Administração</h2>
             <div className="space-y-2">
@@ -74,7 +74,7 @@ const AdminLayout = () => {
     ${location.pathname === '/admin' ? 'bg-quantum-DEFAULT text-white scale-[1.05]' : 'hover:bg-gray-700'}
   `}
               >
-                Dashboard
+                Home
               </Link>
 
               {/* <a
@@ -98,13 +98,6 @@ const AdminLayout = () => {
               {/*  Professores*/}
               {/*</a>*/}
 
-                <Link
-                    to="/admin/settings"
-                    className="block px-4 py-2 text-sm rounded hover:bg-gray-700"
-                >
-                    Configurações
-                </Link>
-
               <Link
                 to="/admin/settings"
                 className={`block px-4 py-2 text-sm rounded transition-all duration-300 ease-in-out
@@ -113,22 +106,7 @@ const AdminLayout = () => {
               >
                 Configurações
               </Link>
-              <Link
-                to="/admin/manage"
-                className={`block px-4 py-2 text-sm rounded transition-all duration-300 ease-in-out
-    ${location.pathname === '/admin/manage' ? 'bg-quantum text-white scale-[1.05]' : 'hover:bg-gray-700'}
-  `}
-              >
-                Gerenciar Usuários
-              </Link>
-              <Link
-                to="/admin/manage/groups"
-                className={`block px-4 py-2 text-sm rounded transition-all duration-300 ease-in-out
-    ${location.pathname === '/admin/manage/groups' ? 'bg-quantum text-white scale-[1.05]' : 'hover:bg-gray-700'}
-  `}
-              >
-                Gerenciar Grupos
-              </Link>
+
             </div>
           </div>
         </nav>
@@ -142,4 +120,4 @@ const AdminLayout = () => {
   );
 };
 
-export default AdminLayout;
+export default ProfessorLayout;

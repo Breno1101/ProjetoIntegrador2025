@@ -13,6 +13,8 @@ import Dashboard from './components/dashboard/Dashboard.jsx';
 import ChatPage from './components/chat/ChatPage.jsx';
 import Profile from './components/pages/profile/Profile.jsx';
 import AdminDashboard from './components/admin/AdminDashboard.jsx';
+import ManageUsers from './components/admin/ManageUsers.jsx';
+import ManageGroups from './components/admin/ManageGroups.jsx';
 
 // Context Providers
 import {AuthProvider} from './context/AuthContext.jsx';
@@ -23,6 +25,9 @@ import { ProgressProvider } from './context/ProgressContext';
 import {useTheme} from './components/theme/useTheme';
 import Settings from "./components/admin/Settings";
 import {AdminProvider} from "./context/AdminContext";
+import ProgressOverview from './components/admin/ProgressOverview.jsx';
+import ProfessorLayout from './layouts/ProfessorLayout.jsx';
+import ProfessorDashboard from './components/professor/ProfessorDashboard.jsx';
 
 // PrivateRoute component for protected routes
 const PrivateRoute = ({ children }) => {
@@ -40,8 +45,17 @@ const AdminRoute = ({ children }) => {
   if (!user || !user.permission) {
     return <Navigate to="/login" />;
   }
-  const isAdmin = user.permission === '2' || user.permission === '3';
+  const isAdmin = user.permission === '3';
   return isAdmin ? children : <Navigate to="/dashboard" />;
+};
+
+const ProfessorRoute = ({ children }) => {
+  const user = JSON.parse(localStorage.getItem('quantumUser') || '{}');
+  if (!user || !user.permission) {
+    return <Navigate to="/login" />;
+  }
+  const isProfessor = user.permission === '2';
+  return isProfessor ? children : <Navigate to="/professor" />;
 };
 
 function App() {
@@ -80,6 +94,18 @@ function App() {
                 }>
                   <Route index element={<AdminDashboard />} />
                   <Route path="/admin/settings" element={<Settings />} />
+                  <Route path="/admin/manage" element={<ManageUsers />} />
+                  <Route path="/admin/manage/groups" element={<ManageGroups />} />
+                </Route>
+
+                {/* Professor Routes */}
+                <Route path="/professor" element={
+                  <ProfessorRoute>
+                    <ProfessorLayout/>
+                  </ProfessorRoute>
+                }>
+                  <Route index element={<ProfessorDashboard />} />
+                  <Route path="/professor/settings" element={<Settings />} />
                 </Route>
 
                 {/* Fallback Route */}
