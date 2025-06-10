@@ -52,7 +52,7 @@ const StudentList = ({ students, selectedStudentId, onSelectStudent, loading }) 
               <button
                 key={student.id}
                 className={`w-full flex items-center p-3 rounded-md text-left transition-colors ${
-                  selectedStudentId === student.id
+                  selectedStudentId === student.user_id
                     ? 'bg-quantum-light text-white'
                     : 'hover:bg-gray-100 text-gray-700 dark:hover:bg-gray-600 dark:text-white'
                 }`}
@@ -65,10 +65,11 @@ const StudentList = ({ students, selectedStudentId, onSelectStudent, loading }) 
                 />
                 <div className="ml-3">
                   <p className="text-sm font-medium">{student.name}</p>
-                  <p className= {`text-xs ${selectedStudentId === student.id
+                  <p className= {`text-xs ${selectedStudentId === student.user_id
                     ? 'text-white'
                     : 'text-gray-500 dark:text-gray-400'
-                }`}>Progresso: {student.progress.overall}%</p>
+                }`}>Progresso: {student.progress}%</p>
+                {/*  progress.overall  */}
                 </div>
               </button>
             ))}

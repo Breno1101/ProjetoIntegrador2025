@@ -10,7 +10,7 @@ export class AdminRepositoryHttp {
         }
     }
 
-    async getAllUsers(email, password) {
+    async getAllUsers() {
         try {
             const response = await http.get(`/users/all`);
             return response.data;

@@ -22,7 +22,7 @@ export const AdminContext = createContext(defaultAdminContext)
 export const AdminProvider = ({ children }) => {
     const adminRepository = new AdminRepositoryHttp()
 
-    const [users, setUsers] = useState([]);
+    // const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -32,9 +32,7 @@ export const AdminProvider = ({ children }) => {
         setError(null);
 
         try {
-            const data = await adminRepository.getAllUsers()
-            setUsers(data);
-            return users;
+            return await adminRepository.getAllUsers()
         } catch (err) {
             const message = err?.message || 'Falha ao buscar usuários';
             setError(message);
