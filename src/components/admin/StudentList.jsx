@@ -33,7 +33,7 @@ const StudentList = ({ students, selectedStudentId, onSelectStudent, loading }) 
         </div>
       </div>
       
-      <div className="pb-2 px-2 text-xs text-gray-500">
+      <div className="pb-2 px-2 text-sm text-gray-500">
         {filteredStudents.length} estudantes encontrados
       </div>
       
