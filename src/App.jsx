@@ -27,6 +27,9 @@ import {AdminProvider} from "./context/AdminContext";
 // PrivateRoute component for protected routes
 const PrivateRoute = ({ children }) => {
   const user = JSON.parse(localStorage.getItem('quantumUser') || '{}');
+  if (!user || !user.permission) {
+    return <Navigate to="/login" />;
+  }
   const isStudent = user.permission === '1';
   return isStudent ? children : <Navigate to="/admin" />;
 };
@@ -34,6 +37,9 @@ const PrivateRoute = ({ children }) => {
 // AdminRoute component for admin-only routes
 const AdminRoute = ({ children }) => {
   const user = JSON.parse(localStorage.getItem('quantumUser') || '{}');
+  if (!user || !user.permission) {
+    return <Navigate to="/login" />;
+  }
   const isAdmin = user.permission === '2' || user.permission === '3';
   return isAdmin ? children : <Navigate to="/dashboard" />;
 };
