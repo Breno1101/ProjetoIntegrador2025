@@ -6,20 +6,20 @@ const ProgressOverview = ({ studentId }) => {
   const lessons = getLessons();
   
   // In a real app, this would fetch the student's progress for each lesson
-  const getMockLessonProgress = (lessonId) => {
-    // Generate mock progress data based on student ID and lesson ID
-    const seed = parseInt(studentId.replace('usr_', '')) + lessonId;
-    const progress = Math.min(100, (seed % 20) * 5);
-    
-    return {
-      lessonId,
-      progress,
-      started: progress > 0,
-      completed: progress === 100,
-      lastActive: new Date(Date.now() - (seed % 10) * 86400000).toISOString(),
-      interactions: seed % 30
-    };
-  };
+  // const getMockLessonProgress = (lessonId) => {
+  //   // Generate mock progress data based on student ID and lesson ID
+  //   // const seed = parseInt(studentId.replace('usr_', '')) + lessonId;
+  //   const progress = Math.min(100, (seed % 20) * 5);
+  //
+  //   return {
+  //     lessonId,
+  //     progress,
+  //     started: progress > 0,
+  //     completed: progress === 100,
+  //     lastActive: new Date(Date.now() - (seed % 10) * 86400000).toISOString(),
+  //     interactions: seed % 30
+  //   };
+  // };
   
   return (
     <div>
@@ -27,7 +27,7 @@ const ProgressOverview = ({ studentId }) => {
       
       <div className="space-y-4">
         {lessons.map(lesson => {
-          const progress = getMockLessonProgress(lesson.id);
+          // const progress = getMockLessonProgress(lesson.id);
           
           return (
             <div key={lesson.id} className="bg-gray-50 dark:bg-gray-600 rounded-lg p-4">
@@ -39,29 +39,29 @@ const ProgressOverview = ({ studentId }) => {
                   <h4 className="font-medium dark:text-white">{lesson.title}</h4>
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-300">
-                  {progress.completed ? (
-                    <span className="text-green-600 dark:text-green-400 font-medium">Concluído</span>
-                  ) : progress.started ? (
-                    <span className="text-blue-600 dark:text-blue-400 font-medium">Em progresso</span>
-                  ) : (
-                    <span className="text-gray-500 dark:text-gray-300">Não iniciado</span>
-                  )}
+                  {/*{progress.completed ? (*/}
+                  {/*  <span className="text-green-600 dark:text-green-400 font-medium">Concluído</span>*/}
+                  {/*) : progress.started ? (*/}
+                  {/*  <span className="text-blue-600 dark:text-blue-400 font-medium">Em progresso</span>*/}
+                  {/*) : (*/}
+                  {/*  <span className="text-gray-500 dark:text-gray-300">Não iniciado</span>*/}
+                  {/*)}*/}
                 </div>
               </div>
               
               <div className="flex items-center mb-2">
                 <div className="w-full h-2 bg-gray-200 rounded-full mr-2">
-                  <div
-                    className={`h-2 rounded-full ${progress.completed ? 'bg-green-500 dark:bg-green-400' : 'bg-quantum dark:bg-quantum-light'}`}
-                    style={{ width: `${progress.progress}%` }}
-                  ></div>
+                  {/*<div*/}
+                  {/*  className={`h-2 rounded-full ${progress.completed ? 'bg-green-500 dark:bg-green-400' : 'bg-quantum dark:bg-quantum-light'}`}*/}
+                  {/*  style={{ width: `${progress.progress}%` }}*/}
+                  {/*></div>*/}
                 </div>
-                <span className="text-sm font-medium w-12 text-right dark:text-white">{progress.progress}%</span>
+                {/*<span className="text-sm font-medium w-12 text-right dark:text-white">{progress.progress}%</span>*/}
               </div>
               
               <div className="flex flex-wrap text-xs text-gray-600 dark:text-gray-300 mt-2">
                 <div className="w-1/2 mb-1">
-                  <span className="font-medium">Interações:</span> {progress.interactions}
+                  {/*<span className="font-medium">Interações:</span> {progress.interactions}*/}
                 </div>
               </div>
             </div>

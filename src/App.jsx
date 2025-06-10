@@ -32,20 +32,29 @@ import ProfessorDashboard from './components/professor/ProfessorDashboard.jsx';
 // PrivateRoute component for protected routes
 const PrivateRoute = ({ children }) => {
   const user = JSON.parse(localStorage.getItem('quantumUser') || '{}');
-  const isStudent = user.permission === 1;
+  if (!user || !user.permission) {
+    return <Navigate to="/login" />;
+  }
+  const isStudent = user.permission === '1';
   return isStudent ? children : <Navigate to="/admin" />;
 };
 
 // AdminRoute component for admin-only routes
 const AdminRoute = ({ children }) => {
   const user = JSON.parse(localStorage.getItem('quantumUser') || '{}');
-  const isAdmin = user.permission === 3;
+  if (!user || !user.permission) {
+    return <Navigate to="/login" />;
+  }
+  const isAdmin = user.permission === '3';
   return isAdmin ? children : <Navigate to="/dashboard" />;
 };
 
 const ProfessorRoute = ({ children }) => {
   const user = JSON.parse(localStorage.getItem('quantumUser') || '{}');
-  const isProfessor = user.permission === 3;
+  if (!user || !user.permission) {
+    return <Navigate to="/login" />;
+  }
+  const isProfessor = user.permission === '2';
   return isProfessor ? children : <Navigate to="/professor" />;
 };
 

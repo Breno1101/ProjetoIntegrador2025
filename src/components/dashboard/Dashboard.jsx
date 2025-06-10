@@ -72,7 +72,7 @@ const Dashboard = () => {
   const recentActivity = getRecentActivity();
   
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
       {/* Welcome section */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -90,7 +90,7 @@ const Dashboard = () => {
           <div className="flex items-center space-x-4 mb-4">
             <div className="h-4 flex-grow bg-gray-200 rounded-full overflow-hidden">
               <div
-                className="h-4 bg-quantum-DEFAULT"
+                className="h-4 bg-quantum"
                 style={{ width: `${overallProgress}%` }}
               ></div>
             </div>
@@ -137,7 +137,7 @@ const Dashboard = () => {
           <h2 className="text-lg font-medium text-gray-900 dark:text-white">Todas as aulas</h2>
           <Link
             to="/chat"
-            className="text-sm text-quantum-DEFAULT hover:underline"
+            className="text-sm text-quantum-DEFAULT hover:underline dark:text-white"
           >
             Ver todas
           </Link>

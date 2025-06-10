@@ -55,7 +55,7 @@ const LessonCard = ({ lesson }) => {
             <span>Progresso:</span>
             <div className="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden">
               <div
-                className="h-1.5 bg-quantum-DEFAULT"
+                className="h-1.5 bg-quantum"
                 style={{ width: `${progress.progressPercentage}%` }}
               ></div>
             </div>
@@ -64,7 +64,7 @@ const LessonCard = ({ lesson }) => {
           
           <Link
             to={`/chat/${lesson.id}`}
-            className="text-sm font-medium text-quantum-DEFAULT hover:text-quantum-dark dark:text-white dark:hover:text-quantum-light"
+            className="text-sm font-medium text-quantum hover:text-quantum-dark dark:text-white dark:hover:text-quantum-light"
           >
             {progress.started ? 'Continuar' : 'Iniciar'} →
           </Link>

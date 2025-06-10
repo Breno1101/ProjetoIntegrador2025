@@ -25,7 +25,7 @@ const StatsSummary = ({ completedLessons, inProgressLessons, totalLessons }) => 
       <div>
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-gray-600 dark:text-gray-300">Concluídas</span>
-          <span className="text-sm font-semibold">{completedLessons} de {totalLessons}</span>
+          <span className="text-sm font-semibold dark:text-white">{completedLessons} de {totalLessons}</span>
         </div>
         <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
@@ -38,7 +38,7 @@ const StatsSummary = ({ completedLessons, inProgressLessons, totalLessons }) => 
       <div>
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-gray-600 dark:text-gray-300">Em progresso</span>
-          <span className="text-sm font-semibold">{inProgressLessons} de {totalLessons}</span>
+          <span className="text-sm font-semibold dark:text-white">{inProgressLessons} de {totalLessons}</span>
         </div>
         <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
@@ -51,7 +51,7 @@ const StatsSummary = ({ completedLessons, inProgressLessons, totalLessons }) => 
       <div>
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-gray-600 dark:text-gray-300">Não iniciadas</span>
-          <span className="text-sm font-semibold">{remainingLessons} de {totalLessons}</span>
+          <span className="text-sm font-semibold dark:text-white">{remainingLessons} de {totalLessons}</span>
         </div>
         <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
