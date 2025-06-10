@@ -3,6 +3,7 @@ import useAuth from '../../hooks/useAuth';
 import useProgress from '../../hooks/useProgress';
 import useChat from '../../hooks/useChat';
 import {useTheme} from "../theme/useTheme";
+import UserAvatar from '../../layouts/UserAvatar';
 
 const Settings = () => {
   const { currentUser } = useAuth();
@@ -68,16 +69,6 @@ const Settings = () => {
             </button>
             <button
                 className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                    activeTab === 'progress'
-                        ? 'border-quantum text-quantum dark:border-quantum-light dark:text-quantum-light'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:hover:text-gray-300 dark:hover:border-gray-300'
-                }`}
-                onClick={() => setActiveTab('progress')}
-            >
-              Progresso de Aprendizado
-            </button>
-            <button
-                className={`py-4 px-1 border-b-2 font-medium text-sm ${
                     activeTab === 'theme'
                         ? 'border-quantum text-quantum dark:border-quantum-light dark:text-quantum-light'
                         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:hover:text-gray-300 dark:hover:border-gray-300'
@@ -95,11 +86,7 @@ const Settings = () => {
               <div className="p-6 sm:p-8">
                 <div className="flex justify-between items-start">
                   <div className="flex items-center">
-                    <img
-                        src={currentUser?.avatar || 'https://ui-avatars.com/api/?name=User&background=random'}
-                        alt="Settings"
-                        className="h-24 w-24 rounded-full object-cover"
-                    />
+                    <UserAvatar avatar={currentUser?.avatar} name={currentUser?.name} className='w-24'/>
                     <div className="ml-6">
                       <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{currentUser?.name}</h2>
                       <p className="text-gray-600 dark:text-gray-300">{currentUser?.email}</p>
@@ -119,7 +106,6 @@ const Settings = () => {
                     {isEditing ? 'Cancelar' : 'Editar Perfil'}
                   </button>
                 </div>
-
                 {isEditing ? (
                     <form onSubmit={handleSubmitProfile} className="mt-6 space-y-4">
                       <div>
@@ -133,6 +119,7 @@ const Settings = () => {
                             value={profileData.name}
                             onChange={handleProfileChange}
                             className="input mt-1"
+                            placeholder='Nome'
                         />
                       </div>
 
@@ -147,6 +134,7 @@ const Settings = () => {
                             value={profileData.email}
                             onChange={handleProfileChange}
                             className="input mt-1"
+                            placeholder="Email"
                         />
                       </div>
 
@@ -157,18 +145,7 @@ const Settings = () => {
                       </div>
                     </form>
                 ) : (
-                    <div className="mt-6 border-t border-gray-200 pt-6">
-                      <dl className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
-                        <div>
-                          <dt className="text-sm font-medium text-gray-500 dark:text-gray-300">Progresso Total</dt>
-                          <dd className="mt-1 text-sm text-gray-900 dark:text-white">{overallProgress}%</dd>
-                        </div>
-                        <div>
-                          <dt className="text-sm font-medium text-gray-500 dark:text-gray-300">Aulas Completadas</dt>
-                          <dd className="mt-1 text-sm text-gray-900 dark:text-white">{completedLessons} de 10</dd>
-                        </div>
-                      </dl>
-                    </div>
+                    <div/>
                 )}
               </div>
             </div>
