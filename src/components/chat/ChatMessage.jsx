@@ -28,31 +28,31 @@ const ChatMessage = ({ message, isUser }) => {
             {formatTime(message.timestamp)}
           </span>
         </div>
-        
-        <div className={`prose ${isUser ? 'prose-invert' : ''} max-w-none`}>
-          <ReactMarkdown
-            components={{
-              code({ node, inline, className, children, ...props }) {
-                const match = /language-(\w+)/.exec(className || '');
-                return !inline && match ? (
-                  <SyntaxHighlighter
-                    style={atomOneDark}
-                    language={match[1]}
-                    PreTag="div"
-                    {...props}
-                  >
-                    {String(children).replace(/\n$/, '')}
-                  </SyntaxHighlighter>
-                ) : (
-                  <code className={className} {...props}>
-                    {children}
-                  </code>
-                );
-              }
-            }}
-          >
-            {message.text}
-          </ReactMarkdown>
+
+        <div className={`max-w-none break-words whitespace-pre-wrap text-sm leading-relaxed`} style={{ overflowWrap: 'anywhere' }}>
+            <ReactMarkdown
+                components={{
+                  code({ node, inline, className, children, ...props }) {
+                    const match = /language-(\w+)/.exec(className || '');
+                    return !inline && match ? (
+                      <SyntaxHighlighter
+                        style={atomOneDark}
+                        language={match[1]}
+                        PreTag="div"
+                        {...props}
+                      >
+                        {String(children).replace(/\n$/, '')}
+                      </SyntaxHighlighter>
+                    ) : (
+                      <code className={className} {...props}>
+                        {children}
+                      </code>
+                    );
+                  }
+                }}
+              >
+                {message.text}
+              </ReactMarkdown>
         </div>
       </div>
     </div>
